@@ -1,0 +1,38 @@
+{
+  "Contas": {
+    "test1": {
+      "ID": 1,
+      "Senha": 1234,
+      "amigos": [
+        "2"
+      ],
+      "clicksMiku": 0,
+      "clicksTeto": 0,
+      "clicksNeru": 0,
+      "clicksRandoms": 0,
+      "personagemPrincipal": "Miku"
+    },
+    "test2": {
+      "ID": 2,
+      "Senha": 1234,
+      "amigos": [
+        "1"
+      ],
+      "clicksMiku": 0,
+      "clicksTeto": 0,
+      "clicksNeru": 0,
+      "clicksRandoms": 0,
+      "personagemPrincipal": "Teto"
+    },
+    "test3": {
+      "ID": 3,
+      "Senha": 1234,
+      "amigos": [],
+      "clicksMiku": 0,
+      "clicksTeto": 0,
+      "clicksNeru": 0,
+      "clicksRandoms": 0,
+      "personagemPrincipal": "Neru"
+    }
+  }
+}

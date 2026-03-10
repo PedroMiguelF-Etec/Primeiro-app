@@ -1,0 +1,35 @@
+{
+  "test1": {
+    "Nome": "Test1",
+    "Senha": 1234,
+    "amigos": [
+      "test2"
+    ],
+    "clicksMiku": 0,
+    "clicksNeru": 0,
+    "clicksRandoms": 0,
+    "clicksTeto": 0,
+    "personagemPrincipal": "Miku"
+  },
+  "test2": {
+    "Nome": "Test2",
+    "Senha": 1234,
+    "amigos": [
+      "test1"
+    ],
+    "clicksMiku": 0,
+    "clicksNeru": 0,
+    "clicksRandoms": 0,
+    "clicksTeto": 0,
+    "personagemPrincipal": "Teto"
+  },
+  "test3": {
+    "Nome": "Test3",
+    "Senha": 1234,
+    "clicksMiku": 0,
+    "clicksNeru": 0,
+    "clicksRandoms": 0,
+    "clicksTeto": 0,
+    "personagemPrincipal": "Neru"
+  }
+}
