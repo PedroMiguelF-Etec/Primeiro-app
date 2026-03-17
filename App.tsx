@@ -15,12 +15,6 @@ export default function MikuButton() {
   const [neruClicks, setNeruClicks] = useState(0);
   const [tetoClicks, setTetoClicks] = useState(0);
 
-  const [mensagem, setMensagem] = useState("Clique na Miku!");
-
-  function mudarMensagem(num: number) {
-    setMensagem("Você clicou " + num + " vezes!");
-  }
-
   const cores = {
     miku: "#0df",
     neru: "#fd0",
@@ -61,12 +55,12 @@ export default function MikuButton() {
   };
 
   return (
-    <View style={styles.screen}>
+    <View style={[styles.screen, {backgroundColor: "#000"}]}>
       <View>
-        <Text style={{ fontSize: 20, marginBottom: 10, marginTop: 10 }}>
-          Feito por Pedro MiguelF
+        <Text style={{ fontSize: 20, marginBottom: 10, marginTop: 10, color: ArrayPersonagems[selecao].cor }}>
+          Feito por Pedro MiguelF e Lorenzo
         </Text>
-        <Text style={{ fontSize: 20, marginBottom: 10}}>
+        <Text style={{ fontSize: 20, marginBottom: 10, color: ArrayPersonagems[selecao].cor}}>
           {ArrayPersonagems[selecao].nome}
         </Text>
       </View>
@@ -84,22 +78,38 @@ export default function MikuButton() {
           }}
         />
       </Pressable>
-      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ fontSize: 20, margin: 20, backgroundColor: ArrayPersonagems[selecao].cor }}>
+      <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: "#000" }}>
+        <Text style={{ fontSize: 20, margin: 20, backgroundColor: "#000", color: ArrayPersonagems[selecao].cor }}>
           {ArrayPersonagems[selecao].cliks}
         </Text>
 
-        <View style={{ flexDirection: 'row', gap: 10 }}>
-          <TouchableOpacity style={{ backgroundColor: ArrayPersonagems[(selecao + 1) % 3].cor, padding: 10, borderRadius: 5 }} onPress={() => setSelecao((selecao + 1) % 3)}>
-            <Text>{ArrayPersonagems[(selecao + 1) % 3].nome}</Text>
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 35, backgroundColor: "#000" }}>
+          <TouchableOpacity style={{ backgroundColor: "#000", padding: 10, borderColor: ArrayPersonagems[(selecao + 1) % 3].cor, borderWidth: 1, borderRadius: 5}} onPress={() => setSelecao((selecao + 1) % 3)}>
+            <Text style={{color: ArrayPersonagems[(selecao + 1) % 3].cor}}>{ArrayPersonagems[(selecao + 1) % 3].nome}</Text>
           </TouchableOpacity>
-          <Button title="Mensagem!" onPress={() => mudarMensagem(ArrayPersonagems[selecao].cliks)} />
-
+          <TouchableOpacity style={{ backgroundColor: "#000", borderColor: ArrayPersonagems[selecao].cor, borderWidth: 1, padding: 10, borderRadius: 5 }} onPress={() => {
+            if (selecao === 0) {
+              setMikuClicks(mikuClicks - 1);
+            } else if (selecao === 1) {
+              setNeruClicks(neruClicks - 1);
+            } else if (selecao === 2) {
+              setTetoClicks(tetoClicks - 1);
+            }
+          }}>
+            <Text style={{color: ArrayPersonagems[selecao].cor}}>-1 Cliks</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ backgroundColor: "#000", borderColor: "#fff", borderWidth: 1, padding: 10, borderRadius: 5}} onPress={() => {
+            if (selecao === 0) {
+              setMikuClicks(0);
+            } else if (selecao === 1) {
+              setNeruClicks(0);
+            } else if (selecao === 2) {
+              setTetoClicks(0);
+            }
+          }}>
+            <Text style={{color: "#fff"}}>Resetar</Text>
+          </TouchableOpacity>
         </View>
-        
-        <Text style={{ fontSize: 20, margin: 15 }}>
-          {mensagem}
-        </Text>
       </View>
 
     </View>
