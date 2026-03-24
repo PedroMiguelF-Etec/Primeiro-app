@@ -15,11 +15,20 @@ export default function MikuButton() {
   const [neruClicks, setNeruClicks] = useState(0);
   const [tetoClicks, setTetoClicks] = useState(0);
 
+  let mensagem = ""
+
   const cores = {
     miku: "#0df",
     neru: "#fd0",
     teto: "#f00",
   };
+
+  const coresATIVAS =
+  [
+    "#F00",
+    "#0F0"
+  ]
+  let corselect = 0
 
   const [selecao, setSelecao] = useState(0);
   const ArrayPersonagems = [
@@ -45,20 +54,34 @@ export default function MikuButton() {
       useNativeDriver: true,
     }).start();
 
-    if (selecao === 0) {
+    if (selecao === 0 && mikuClicks != 10 && mikuClicks < 10) {
       setMikuClicks(mikuClicks + 1);
-    } else if (selecao === 1) {
+    } else if (selecao === 1 && neruClicks != 10 && neruClicks < 10) {
       setNeruClicks(neruClicks + 1);
-    } else if (selecao === 2) {
+    } else if (selecao === 2 && tetoClicks != 10 && tetoClicks < 10) {
       setTetoClicks(tetoClicks + 1);
     }
   };
+
+  if (ArrayPersonagems[selecao].cliks >= 0)
+  {
+     corselect = 1
+  }
+  else
+  {
+    corselect = 0
+  }
+
+  if (ArrayPersonagems[selecao].cliks >= 10 || ArrayPersonagems[selecao].cliks <= -10)
+  {
+    mensagem = "Você clicou de mais"
+  }
 
   return (
     <View style={[styles.screen, {backgroundColor: "#000"}]}>
       <View>
         <Text style={{ fontSize: 20, marginBottom: 10, marginTop: 10, color: ArrayPersonagems[selecao].cor }}>
-          Feito por Pedro MiguelF e Lorenzo
+          Feito por Pedro MiguelF e Luis Felipe
         </Text>
         <Text style={{ fontSize: 20, marginBottom: 10, color: ArrayPersonagems[selecao].cor}}>
           {ArrayPersonagems[selecao].nome}
@@ -79,20 +102,20 @@ export default function MikuButton() {
         />
       </Pressable>
       <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: "#000" }}>
-        <Text style={{ fontSize: 20, margin: 20, backgroundColor: "#000", color: ArrayPersonagems[selecao].cor }}>
+        <Text style={{ fontSize: 20, margin: 20, backgroundColor: "#000", color: ArrayPersonagems[selecao].cor}}>
           {ArrayPersonagems[selecao].cliks}
         </Text>
 
-        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 35, backgroundColor: "#000" }}>
+        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10, backgroundColor: "#000" }}>
           <TouchableOpacity style={{ backgroundColor: "#000", padding: 10, borderColor: ArrayPersonagems[(selecao + 1) % 3].cor, borderWidth: 1, borderRadius: 5}} onPress={() => setSelecao((selecao + 1) % 3)}>
             <Text style={{color: ArrayPersonagems[(selecao + 1) % 3].cor}}>{ArrayPersonagems[(selecao + 1) % 3].nome}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ backgroundColor: "#000", borderColor: ArrayPersonagems[selecao].cor, borderWidth: 1, padding: 10, borderRadius: 5 }} onPress={() => {
-            if (selecao === 0) {
+            if (selecao === 0 && mikuClicks != -10 && mikuClicks > -10) {
               setMikuClicks(mikuClicks - 1);
-            } else if (selecao === 1) {
+            } else if (selecao === 1 && neruClicks != -10 && neruClicks > -10) {
               setNeruClicks(neruClicks - 1);
-            } else if (selecao === 2) {
+            } else if (selecao === 2 && tetoClicks != -10 && tetoClicks > -10) {
               setTetoClicks(tetoClicks - 1);
             }
           }}>
@@ -110,6 +133,9 @@ export default function MikuButton() {
             <Text style={{color: "#fff"}}>Resetar</Text>
           </TouchableOpacity>
         </View>
+        <Text style={{color: coresATIVAS[corselect], marginBottom: 35}}>
+          {mensagem}
+        </Text>
       </View>
 
     </View>
